@@ -1,18 +1,35 @@
 let currentTab = 'fleet';
+let currentView = 'table';
 const ACTIVE = 'background:#0f3a73;color:#fff;border-color:#4aa8ff;box-shadow:0 0 14px rgba(74,168,255,0.35),inset 0 0 8px rgba(74,168,255,0.1);';
 const IDLE = 'background:#2d333b;color:#768390;border-color:transparent;box-shadow:none;';
+const VIEW_IDLE = 'background:#1b2a36;color:#38d6ff;border-color:#38d6ff;box-shadow:none;';
+const VIEW_BUTTONS = [['chain', 'Chain of Command'], ['oob', 'Order of Battle'], ['droids', 'Droid Registry']];
 
 function buildTabs() {
   const bar = document.getElementById('tab-bar');
-  bar.innerHTML = Object.keys(TABS).map(k =>
-    `<button onclick="setTab('${k}')" id="tab-${k}" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="${k === currentTab ? ACTIVE : IDLE}">${TABS[k].label}</button>`).join('') +
-    [['Orders of Battle','ORDER_OF_BATTLE'],['Droid Types','DROID_TYPES']].map(([l, v]) => `<button onclick="openDoc('${l}','${v}')" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="background:#1b2a36;color:#38d6ff;border-color:#38d6ff;">${l}</button>`).join('') +
-    `<button onclick="openChain()" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="background:#3b3f63;color:#f5b800;border-color:#f5b800;">Chain Overview</button>`;
+  const cls = 'tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all';
+  bar.innerHTML = Object.keys(TABS).map(k => `<button onclick="setTab('${k}')" id="tab-${k}" class="${cls}">${TABS[k].label}</button>`).join('') +
+    VIEW_BUTTONS.map(([k, l]) => `<button onclick="showView('${k}')" id="view-${k}" class="${cls}">${l}</button>`).join('');
+  paintTabs();
+}
+function paintTabs() {
+  Object.keys(TABS).forEach(k => { document.getElementById('tab-' + k).style.cssText = currentView === 'table' && k === currentTab ? ACTIVE : IDLE; });
+  VIEW_BUTTONS.forEach(([k]) => { document.getElementById('view-' + k).style.cssText = currentView === k ? ACTIVE : VIEW_IDLE; });
 }
 function setTab(tab) {
   currentTab = tab;
-  Object.keys(TABS).forEach(k => { document.getElementById('tab-' + k).style.cssText = k === tab ? ACTIVE : IDLE; });
-  render();
+  showView('table');
+}
+function showView(v) {
+  currentView = v;
+  const panel = document.getElementById('view-panel');
+  document.getElementById('table-view').classList.toggle('hidden', v !== 'table');
+  panel.classList.toggle('hidden', v === 'table');
+  paintTabs();
+  if (v === 'table') render();
+  else if (v === 'chain') renderChain(panel);
+  else if (v === 'oob') renderOob(panel);
+  else renderDroids(panel);
 }
 
 function visibleRows(tab) {
@@ -78,13 +95,6 @@ function openBranch(key) {
 function openSupreme() {
   fillModal({ rank: 'Supreme Commander', branch: 'Office of the Supreme Commander', tier: 'FO-6', address: 'Supreme Commander, Sir',
     desc: SUPREME_TEXT, plaque: createInsignia('SUPREME', 'navy'), access: 'LVL-7 SEALED' });
-}
-function openChain() {
-  fillModal({ rank: 'Chain of Command', branch: 'Provincial Overview', tierLabel: 'Branches', tier: String(Object.keys(BRANCHES).length), address: 'Supreme Commander to enlisted',
-    desc: CHAIN_TEXT, plaque: createInsignia('SUPREME', 'navy'), access: 'LVL-4 RESTRICTED' });
-}
-function openDoc(label, name) {
-  fillModal({ rank: label, branch: 'Reference Document', tierLabel: 'Document', tier: 'REF', address: 'Provincial archive', desc: window[name] || eval(name), plaque: createInsignia('EMBLEM', 'navy'), access: 'LVL-4 RESTRICTED' });
 }
 function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
