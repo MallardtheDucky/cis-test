@@ -1,4 +1,3 @@
-/* UI: tabs, table rendering, modals, clock */
 let currentTab = 'fleet';
 const ACTIVE = 'background:#0f3a73;color:#fff;border-color:#4aa8ff;box-shadow:0 0 14px rgba(74,168,255,0.35),inset 0 0 8px rgba(74,168,255,0.1);';
 const IDLE = 'background:#2d333b;color:#768390;border-color:transparent;box-shadow:none;';
@@ -6,16 +5,16 @@ const IDLE = 'background:#2d333b;color:#768390;border-color:transparent;box-shad
 function buildTabs() {
   const bar = document.getElementById('tab-bar');
   bar.innerHTML = Object.keys(TABS).map(k =>
-    `<button onclick="setTab('${k}')" id="tab-${k}" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="${k === currentTab ? ACTIVE : IDLE}">${TABS[k].label}</button>`).join('');
+    `<button onclick="setTab('${k}')" id="tab-${k}" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="${k === currentTab ? ACTIVE : IDLE}">${TABS[k].label}</button>`).join('') +
+    [['Orders of Battle','ORDER_OF_BATTLE'],['Droid Types','DROID_TYPES']].map(([l, v]) => `<button onclick="openDoc('${l}','${v}')" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="background:#1b2a36;color:#38d6ff;border-color:#38d6ff;">${l}</button>`).join('') +
+    `<button onclick="openChain()" class="tab-btn px-4 py-2 font-bold uppercase text-xs border-2 transition-all" style="background:#3b3f63;color:#f5b800;border-color:#f5b800;">Chain Overview</button>`;
 }
 function setTab(tab) {
   currentTab = tab;
   Object.keys(TABS).forEach(k => { document.getElementById('tab-' + k).style.cssText = k === tab ? ACTIVE : IDLE; });
-  if (window.hyperjump) window.hyperjump();
   render();
 }
 
-/* rows shown in a tab: Supreme row plus any tier where at least one column has a rank */
 function visibleRows(tab) {
   return ['SUPREME'].concat(TIERS.filter((t, i) => tab.cols.some(k => BRANCHES[k].ranks[i] !== '-')));
 }
@@ -53,7 +52,6 @@ function render() {
   const rc = document.getElementById('record-count'); if (rc) rc.textContent = total;
 }
 
-/* ── Modals ── */
 function fillModal(o) {
   document.getElementById('modal-rank').innerText = o.rank;
   document.getElementById('modal-branch').innerText = o.branch;
@@ -81,9 +79,15 @@ function openSupreme() {
   fillModal({ rank: 'Supreme Commander', branch: 'Office of the Supreme Commander', tier: 'FO-6', address: 'Supreme Commander, Sir',
     desc: SUPREME_TEXT, plaque: createInsignia('SUPREME', 'navy'), access: 'LVL-7 SEALED' });
 }
+function openChain() {
+  fillModal({ rank: 'Chain of Command', branch: 'Provincial Overview', tierLabel: 'Branches', tier: String(Object.keys(BRANCHES).length), address: 'Supreme Commander to enlisted',
+    desc: CHAIN_TEXT, plaque: createInsignia('SUPREME', 'navy'), access: 'LVL-4 RESTRICTED' });
+}
+function openDoc(label, name) {
+  fillModal({ rank: label, branch: 'Reference Document', tierLabel: 'Document', tier: 'REF', address: 'Provincial archive', desc: window[name] || eval(name), plaque: createInsignia('EMBLEM', 'navy'), access: 'LVL-4 RESTRICTED' });
+}
 function closeModal() { document.getElementById('modal').classList.add('hidden'); }
 
-/* ── Clock & stardate ── */
 function updateClock() {
   const now = new Date(), p = n => String(n).padStart(2, '0'), t = `${p(now.getHours())}:${p(now.getMinutes())}:${p(now.getSeconds())}`;
   const sd = ((now.getTime() - new Date('1977-05-25').getTime()) / 86400000 / 365.25 * 100 + 9900).toFixed(1);

@@ -1,4 +1,3 @@
-/* ── Local fonts (no CDN needed) ── */
 @font-face { font-family:'Rajdhani'; font-weight:400; src:url('../assets/fonts/rajdhani-latin-500-normal.woff2') format('woff2'); font-display:swap; }
 @font-face { font-family:'Rajdhani'; font-weight:500; src:url('../assets/fonts/rajdhani-latin-500-normal.woff2') format('woff2'); font-display:swap; }
 @font-face { font-family:'Rajdhani'; font-weight:600; src:url('../assets/fonts/rajdhani-latin-600-normal.woff2') format('woff2'); font-display:swap; }
@@ -21,7 +20,6 @@ body {
             body { height: auto; min-height: 100vh; overflow: auto; align-items: flex-start; justify-content: flex-start; }
         }
 
-        /* ── Hardware Datapad Casing ── */
         .datapad-chassis {
             width: 98vw;
             height: 96vh;
@@ -42,7 +40,7 @@ body {
             position: relative;
             overflow: hidden;
         }
-        /* Laptop / medium PC: ensure chassis fits and table stays visible */
+
         @media (min-width: 769px) and (max-width: 1400px) {
             .datapad-chassis { width: 99vw; height: 98vh; padding: 12px 14px 10px; border-radius: 16px; }
             #table-headers th { padding: 8px 8px !important; font-size: 10px !important; letter-spacing: 0.08em !important; }
@@ -56,7 +54,7 @@ body {
             #modal-rank { font-size: 2rem !important; }
             #modal .flex-grow.flex.flex-col.p-8 { padding: 18px !important; }
         }
-        /* Mobile */
+
         @media (max-width: 768px) {
             .datapad-chassis { width: 100vw; height: auto; min-height: 100vh; border-radius: 0; border-left: none; border-right: none; padding: 10px 4px 24px; overflow: visible; }
             .screen-bezel { overflow: visible !important; border-radius: 6px !important; }
@@ -65,7 +63,6 @@ body {
             .header-status-bar { display: none !important; }
         }
 
-        /* Chassis edge highlight strip */
         .datapad-chassis::before {
             content: '';
             position: absolute;
@@ -75,7 +72,6 @@ body {
             pointer-events: none;
         }
 
-        /* Side vent slots , left */
         .vent-left {
             position: absolute;
             left: 6px; top: 50%; transform: translateY(-50%);
@@ -88,7 +84,6 @@ body {
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.8);
         }
 
-        /* Side vent slots , right */
         .vent-right {
             position: absolute;
             right: 6px; top: 50%; transform: translateY(-50%);
@@ -101,7 +96,6 @@ body {
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.8);
         }
 
-        /* Model badge strip at bottom of chassis */
         .model-badge {
             position: absolute;
             bottom: 5px; left: 50%; transform: translateX(-50%);
@@ -113,7 +107,6 @@ body {
             pointer-events: none;
         }
 
-        /* ── Screen Bezel ── */
         .screen-bezel {
             flex-grow: 1;
             background-color: #010409;
@@ -129,7 +122,6 @@ body {
             position: relative;
         }
 
-        /* Screen inner vignette */
         .screen-bezel::after {
             content: '';
             position: absolute; inset: 0;
@@ -138,7 +130,6 @@ body {
             z-index: 6;
         }
 
-        /* ── Screws , Phillips head detail ── */
         .screw {
             width: 13px; height: 13px;
             background: radial-gradient(circle at 35% 35%, #4a5568, #1e2430);
@@ -158,7 +149,6 @@ body {
         .screw-bl { bottom: 7px; left: 28px; }
         .screw-br { bottom: 7px; right: 28px; }
 
-        /* ── LED cluster ── */
         .led-cluster {
             position: absolute; top: 8px; left: 52px;
             display: flex; gap: 5px; align-items: center;
@@ -185,13 +175,11 @@ body {
             50%       { opacity: 0.5; box-shadow: 0 0 3px #238636; }
         }
 
-        /* ── Scrollbar ── */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #010409; }
         ::-webkit-scrollbar-thumb { background: #2d333b; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #4aa8ff; }
 
-        /* ── Plaque Styling ── */
         .plaque-container {
             display: flex;
             align-items: center;
@@ -234,7 +222,6 @@ body {
         .tile-blue   { background: linear-gradient(160deg, #2563eb, #1e3a8a); }
         .tile-yellow { background: linear-gradient(160deg, #9cc9ff, #78580a); }
 
-        /* ── Code Cylinder ── */
         .cylinder {
             width: 11px; height: 46px;
             background: linear-gradient(90deg, #555 0%, #ccc 35%, #eee 50%, #ccc 65%, #555 100%);
@@ -254,7 +241,6 @@ body {
             box-shadow: 0 0 4px #238636;
         }
 
-        /* ── Table cell hover ── */
         .cell-hover {
             transition: background 0.15s ease, border-left-color 0.15s ease, color 0.15s ease;
             border-left: 2px solid transparent;
@@ -266,7 +252,6 @@ body {
             color: #fff;
         }
 
-        /* ── Tier group sub-headers ── */
         .tier-group-row td {
             padding: 4px 16px;
             background: rgba(74,168,255,0.06);
@@ -280,7 +265,6 @@ body {
             user-select: none;
         }
 
-        /* ── Grid / scanline overlays ── */
         .grid-lines {
             background-image: radial-gradient(rgba(48,54,61,0.6) 1px, transparent 1px);
             background-size: 22px 22px;
@@ -294,7 +278,6 @@ body {
             z-index: 5;
         }
 
-        /* Slow moving bright scan beam */
         .scan-beam {
             position: absolute; left: 0; width: 100%; height: 2px;
             background: linear-gradient(to bottom, transparent, rgba(74,168,255,0.06), transparent);
@@ -307,7 +290,6 @@ body {
             100% { top: 100%; }
         }
 
-        /* ── Header clock / status bar ── */
         .header-status-bar {
             display: flex; gap: 12px; align-items: center;
             font-family: 'Share Tech Mono', monospace;
@@ -323,7 +305,6 @@ body {
             vertical-align: middle; margin-right: 4px;
         }
 
-        /* ── Tab buttons ── */
         .tab-btn {
             position: relative;
             overflow: hidden;
@@ -338,7 +319,6 @@ body {
         .tab-btn.active::after { background: #4aa8ff; }
         .tab-btn.active { box-shadow: 0 0 14px rgba(74,168,255,0.35), inset 0 0 8px rgba(74,168,255,0.1); }
 
-        /* ── Table header ── */
         #table-headers th {
             background: linear-gradient(180deg, #141a22 0%, #0d1117 100%);
             border-bottom: 2px solid #2d333b;
@@ -351,7 +331,6 @@ body {
             background: linear-gradient(90deg, transparent, rgba(74,168,255,0.3), transparent);
         }
 
-        /* ── Footer ticker ── */
         .ticker-wrap {
             overflow: hidden;
             flex: 1;
@@ -367,7 +346,6 @@ body {
             100% { transform: translateX(-100%); }
         }
 
-        /* ── Modal ── */
         #modal { animation: none; }
         #modal:not(.hidden) { animation: modal-in 0.18s ease forwards; }
         @keyframes modal-in {
@@ -375,7 +353,6 @@ body {
             to   { opacity: 1; transform: scale(1); }
         }
 
-        /* Modal corner bracket decorations */
         .modal-corner {
             position: absolute; width: 20px; height: 20px;
             border-color: #4aa8ff; border-style: solid; opacity: 0.6;
@@ -385,7 +362,6 @@ body {
         .modal-corner-bl { bottom: 6px; left: 6px;  border-width: 0 0 2px 2px; }
         .modal-corner-br { bottom: 6px; right: 6px;  border-width: 0 2px 2px 0; }
 
-        /* Modal left panel glow */
         .insignia-panel {
             background: radial-gradient(ellipse at center, #111820 0%, #050809 100%);
             border: 1px solid #1e2530;
@@ -402,7 +378,6 @@ body {
             pointer-events: none;
         }
 
-        /* Clearance badge */
         .clearance-badge {
             width: 100%; margin-top: 8px;
             border: 1px solid rgba(74,168,255,0.25);
@@ -411,7 +386,6 @@ body {
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* Data strip lines on left of insignia panel */
         .data-strip {
             position: absolute; top: 0; right: 0; bottom: 0; width: 3px;
             background: repeating-linear-gradient(
@@ -423,7 +397,6 @@ body {
             );
         }
 
-        /* Modal description box */
         .desc-box {
             background: linear-gradient(160deg, rgba(5,5,10,0.9) 0%, rgba(10,12,20,0.95) 100%);
             border: 1px solid #1e2530;
@@ -438,12 +411,10 @@ body {
             background: linear-gradient(to bottom, #4aa8ff, transparent 80%);
         }
 
-        /* Custom scrollbar inside modal */
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-track { background: transparent; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #4aa8ff; border-radius: 2px; }
 
-        /* ── Mobile responsive ── */
         @media (max-width: 768px) {
             .flex-grow.overflow-auto { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
             header .p-4.flex.justify-between.items-center { flex-direction: column !important; align-items: flex-start !important; gap: 10px !important; padding: 10px 12px !important; }

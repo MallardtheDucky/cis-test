@@ -1,12 +1,7 @@
-/* Insignia renderer: draws each rank plate as SVG from the specs below.
-   Spec: n = triangles, first = 'up'|'down', s = size scale,
-         u = [bar, startTriangle, length] (under), o = same (over), hex = add Confederate hexagon */
-
 const BAR = { red:'#8c1118', gold:'#f5c518', cyan:'#38d6ff' };
 const SILVER = '#cfd5df';
 const U = (c, len, from) => [c, from || 0, len];
 
-/* Officer specs, in order FO-5, FO-4, FO-3, FO-2, FO-1, SO-3, SO-2, SO-1, JO-4, JO-3, JO-2, JO-1, MID-1 */
 const OFFICER_TIERS = ['FO-5','FO-4','FO-3','FO-2','FO-1','SO-3','SO-2','SO-1','JO-4','JO-3','JO-2','JO-1','MID-1'];
 const OFF = {
   fleet: [
@@ -95,7 +90,6 @@ function insigniaSVG(spec, pal) {
 }
 const plate = (svg, bg) => `<div style="width:270px;background:${bg};border-radius:3px;padding:6px 4px;">${svg}</div>`;
 
-/* tier: a TIERS code, 'SUPREME' or 'EMBLEM' */
 function createInsignia(tier, branchKey) {
   if (tier === 'SUPREME') return plate(insigniaSVG({ supreme: true }, { bg: '#0f1d4d' }), '#0f1d4d');
   const fam = FAMILIES[BRANCHES[branchKey].fam];
