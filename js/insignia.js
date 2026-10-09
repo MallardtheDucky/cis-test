@@ -68,7 +68,7 @@ function emblemGroup(cx, cy, r) {
   for (let i = 0; i < 6; i++) g += `<polygon points="${cx},${cy} ${v[i]} ${v[(i + 1) % 6]}" fill="#fff"/>`;
   return g + `<polygon points="${core}" fill="#151a70"/></g>`;
 }
-// vigilEmblem: the Vigil's own mark, a pale hexagon holding a slit-pupil eye.
+// vigilEmblem: the Brotherhood's own mark, a pale hexagon holding a slit-pupil eye.
 function vigilEmblem(cx, cy, r) {
   const v = hexPts(cx, cy, r).join(' '), sw = Math.max(1.5, r * .07), ew = r * .62, eh = r * .3;
   return `<g stroke-linejoin="round"><polygon points="${v}" fill="#0c0709" stroke="#d9ceb6" stroke-width="${sw * 1.6}"/>`
@@ -117,8 +117,8 @@ function createInsignia(tier, branchKey) {
   if (tier === 'EMBLEM') return plate(insigniaSVG({ emblem: true, vigil: isV }, fam), fam.bg);
   const realTier = tier === 'LATERAL' ? BRANCHES[branchKey].lateral.tier : tier;
   let spec = specFor(realTier, BRANCHES[branchKey].fam);
+  if (!spec && isV) return plate(insigniaSVG({ emblem: true, vigil: true }, fam), fam.bg); // Oblates: the mark alone, no rank strip
   if (!spec) return `<div class="text-[10px] text-gray-500 italic" style="max-width:220px;">${BRANCHES[branchKey].noInsignia || 'No Insignia Authorized. Recruits wear a plain unit patch only.'}</div>`;
-  if (isV && (tier === 'LATERAL' || tier === 'FO-5')) spec = { ...spec, hex: true };
-  if (isV && spec.hex) spec = { ...spec, vigil: true };
+  if (isV) spec = { ...spec, hex: true, vigil: true }; // every Vigil rank carries the hexagon-and-eye mark
   return plate(insigniaSVG(spec, fam), fam.bg);
 }

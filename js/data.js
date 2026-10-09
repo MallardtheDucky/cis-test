@@ -20,7 +20,7 @@ const FAMILIES = {
   civil:   { bg:'#1f4650', mark:'#dfe9f6', note:'Ivory triangles on a slate-teal field. A gold bar marks a Charter-confirmed office.' },
   veil:    { bg:'#14161f', mark:'#8d96a8', note:'Silver triangles on a black field. Worn only on internal identity cards, never in public.' },
   support: { bg:'#3a2f28', mark:'#e8832a', note:'Bronze triangles on a brown field. A gold bar marks a certified technical authority.' },
-  vigil:   { bg:'#1a1216', mark:'#d9ceb6', note:'Bone triangles on a black-oxblood field. A crimson bar marks the Chapter and the Magister. Oblates are unsworn and wear no insignia; the pale eye-and-hexagon mark is the Order\'s own.' },
+  vigil:   { bg:'#1a1216', mark:'#d9ceb6', note:'Bone triangles on a black-oxblood field. A crimson bar marks the Chapter and the Magister. Every rank, Oblate to Magister, bears the Order\'s own mark: a pale hexagon holding a red slit-pupil eye.' },
   droid:   { bg:'#1b2a36', mark:'#38d6ff', note:'Cyan triangles on a steel field. A cyan bar marks a learning-core certified unit.' },
   police:  { bg:'#1d2b4a', mark:'#8fb8ff', note:'Pale-blue triangles on a midnight field. A gold bar marks senior constabulary authority.' }
 };
@@ -275,8 +275,8 @@ guard: { tab:'intel', label:'Charter Guard', name:'Charter Guard', fam:'police',
   duties:["Protect constitutional offices and persons","Control access to protected buildings","Respond to threats against officeholders"],
   posts:{ FO:"Commands the Guard.", SO:"Commands a protective division or detail.", JO:"Leads a protective team.", MID:"Guard cadet.", WO:"Protective-systems specialist.", NCO:"Leads details and posts.", E:"Serves on a post or detail." } },
 
-vigil: { tab:'intel', label:'Vigil Order', name:'Order of the Vigil', fam:'vigil',
-  intro:"The Vigil is the Provincial Authority's sealed order of sensitives: a closed brotherhood of no more than one hundred, bound by the Covenant and answerable to the Supreme Commander alone. The Veil Network finds sensitives in the wider galaxy and smuggles them to Osseriton; the Vigil raises, tests and sworn-binds them. Its members are sent out on writs to hunt rogue sensitives, guard secrets, silence loose ends and kill targets. Every Sworn is paired for life with a droid Counsel.",
+vigil: { tab:'intel', label:'Brotherhood', name:'Brotherhood of Osseriton', fam:'vigil',
+  intro:"The Brotherhood of Osseriton, called the Order of the Vigil within its own walls and \"the Quiet Brothers\" in the Veil's designation, is the Provincial Authority's sealed order of sensitives: a closed brotherhood of no more than one hundred, bound by the Covenant and answerable to the Supreme Commander alone. The Veil Network finds sensitives in the wider galaxy and smuggles them to Osseriton; the Vigil raises, tests and sworn-binds them. Its members are sent out on writs to hunt rogue sensitives, guard secrets, silence loose ends and kill targets. Every Sworn is paired for life with a droid Counsel.",
   heritage:"Founded under Vexis. Its recruits come from the Veil Network's finds and from children born on Osseriton who test strong. Its law is the Covenant; its ceiling is the Measure.",
   mission:"Keep the Confederacy's secrets by hunting, guarding and, when ordered, killing, without ever being seen to do so.",
   org:"Vigil Halls train and induct; field cells of Sworn operate under Priors; the Chapter governs. Two hands serve the Magister: the Marshal (field arm) and the Seneschal (discipline, records and the Vaults). The Measure caps the whole Order at one hundred.",
@@ -292,7 +292,7 @@ vigil: { tab:'intel', label:'Vigil Order', name:'Order of the Vigil', fam:'vigil
   notable:"The Chapter; the three Callings (Edge, Shroud, Eye); the Vigil Halls (including the Second Hall, where the annual trial-by-combat is held); the Vaults; the Ledger of the Fallen; Champion of the Halls, currently Sworn Kaelen Roth.",
   traditions:"Three Oaths mark the crossings: the Novice, the Sworn and Consecration into a Calling. The Seneschal records each in his own hand and the droid Counsel witnesses. The Seneschal recites the Covenant and keeps the Ledger of the Fallen. Washing out is honourable. An Oblate who leaves at adulthood walks away with no shame and no debt.",
   lateral:{ tier:'FO-4', rank:'Seneschal' },
-  noInsignia:"Oblates are unsworn and wear no insignia, only a plain Hall patch.",
+  noInsignia:"Every rank of the Brotherhood bears the hexagon-and-eye mark.",
   advance:"Every advancement needs three things: time served, an aptitude shown and a sponsor of higher rank who vouches for the candidate to the Chapter. The Chapter (Magister, Marshal, Seneschal and all Preceptors) votes; the Magister ratifies and may veto any name without explanation. The Measure caps the Order at one hundred, so a brother rises when someone above him dies, leaves, or the Order admits fewer than it loses.",
   droidHead:"COUNSEL AND OATHS",
   droidNote:"Every Sworn is paired for life with a droid Counsel. A Counsel witnesses each of the three Oaths, which the Seneschal records in his own hand. Only the Magister may speak to Vexis face to face.",
